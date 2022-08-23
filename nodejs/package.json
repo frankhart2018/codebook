@@ -1,0 +1,27 @@
+{
+  "name": "codebook",
+  "version": "1.0.0",
+  "description": "Books with code",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankhart2018/codebook.git"
+  },
+  "author": "Siddhartha Dhar Choudhury",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frankhart2018/codebook/issues"
+  },
+  "homepage": "https://github.com/frankhart2018/codebook#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
