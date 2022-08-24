@@ -41,6 +41,11 @@ const LANGUAGES: Language[] = [
     installed: false,
   },
   {
+    name: "Erlang",
+    converters: ["erl"],
+    installed: false,
+  },
+  {
     name: "Haskell",
     converters: ["ghc"],
     installed: false,
