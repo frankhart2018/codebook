@@ -32,7 +32,9 @@ const LanguageSelect = (): JSX.Element => {
   return (
     <div className="LanguageSelect">
       <FormControl sx={{ m: 1, minWidth: 150 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">Languages</InputLabel>
+        <InputLabel id="demo-simple-select-autowidth-label">
+          Languages
+        </InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
@@ -41,7 +43,11 @@ const LanguageSelect = (): JSX.Element => {
           onChange={handleLanguageChange}
         >
           {items.map((item) => (
-            <MenuItem key={item.name} value={item.name} disabled={!item.installed}>
+            <MenuItem
+              key={item.name}
+              value={item.name}
+              disabled={!item.installed}
+            >
               {item.name}
             </MenuItem>
           ))}
@@ -49,6 +55,6 @@ const LanguageSelect = (): JSX.Element => {
       </FormControl>
     </div>
   );
-}
+};
 
 export default LanguageSelect;

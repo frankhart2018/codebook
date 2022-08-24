@@ -9,6 +9,6 @@ const App = (): JSX.Element => {
       <LanguageSelect />
     </div>
   );
-}
+};
 
 export default App;
