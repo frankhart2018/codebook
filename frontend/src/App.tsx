@@ -25,7 +25,7 @@ const App = (): JSX.Element => {
       });
   }, []);
 
-  const handleChange = (event: any) => {
+  const handleLanguageChange = (event: any) => {
     setLanguage(event.target.value);
   };
 
@@ -38,7 +38,7 @@ const App = (): JSX.Element => {
           id="demo-simple-select-autowidth"
           value={language}
           label="Languages"
-          onChange={handleChange}
+          onChange={handleLanguageChange}
         >
           {items.map((item) => (
             <MenuItem key={item.name} value={item.name} disabled={!item.installed}>
