@@ -22,7 +22,6 @@ const App = (): JSX.Element => {
       .then((res) => res.json())
       .then((json) => {
         setItems(json.languages);
-        console.log(json);
       });
   }, []);
 
