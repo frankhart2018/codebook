@@ -1,9 +1,9 @@
 import express from 'express';
 import { Express, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
-import * as child from 'child_process';
 
 import { Language, LANGUAGES } from './languages';
+import commandExists from './command_exists';
 
 const app: Express = express();
 
@@ -15,23 +15,13 @@ app.get("/status", (_req: Request, res: Response, _next: NextFunction) => {
 
 app.get("/languages/supported", (_req: Request, res: Response, _next: NextFunction) => {
     res.send({
-        "languages": LANGUAGES,
+        "languages": LANGUAGES.map((item) => {
+            return {
+                "name": item.name
+            };
+        }),
     })
 });
-
-const commandExists = (command: string): boolean => {
-    // const isWin: boolean = require('os').platform().indexOf('win') > -1;
-    // const where: string = isWin ? 'where' : 'whereis';
-    // const completeCommand = `${where} ${command}`;
-
-    try {
-        child.execSync(`command -v ${command}`).toString();
-    } catch(e: any) {
-        return false;
-    }
-
-    return true;
-}
 
 app.get("/languages/installed", (_req: Request, res: Response, _next: NextFunction) => {
     const languagesInstalled: Language[] = [];
@@ -48,9 +38,11 @@ app.get("/languages/installed", (_req: Request, res: Response, _next: NextFuncti
             }
         }
 
-        if (foundAnyConverter) {
-            languagesInstalled.push(language);
-        }
+        languagesInstalled.push({
+            "name": language.name,
+            "converters": [],
+            "installed": foundAnyConverter,
+        });
     }
 
     return res.send({
