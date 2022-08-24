@@ -1,11 +1,13 @@
 import express from 'express';
 import { Express, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import { Language, LANGUAGES } from './languages';
 import commandExists from './command_exists';
 
 const app: Express = express();
+app.use(cors());
 
 app.get("/status", (_req: Request, res: Response, _next: NextFunction) => {
     res.send({
