@@ -15,7 +15,6 @@ interface Language {
 
 const App = (): JSX.Element => {
   const [items, setItems] = useState<Language[]>([]);
-  const [loadedLanguages, setLoadedLanguages] = useState<boolean>(false);
   const [language, setLanguage] = useState<string>("");
 
   useEffect(() => {
@@ -24,7 +23,6 @@ const App = (): JSX.Element => {
       .then((json) => {
         setItems(json.languages);
         console.log(json);
-        setLoadedLanguages(true);
       });
   }, []);
 
