@@ -11,6 +11,11 @@ const LANGUAGES: Language[] = [
     installed: false,
   },
   {
+    name: "C++",
+    converters: ["g++", "clang++"],
+    installed: false,
+  },
+  {
     name: "Python",
     converters: ["python3", "python"],
     installed: false,
@@ -18,6 +23,21 @@ const LANGUAGES: Language[] = [
   {
     name: "Java",
     converters: ["javac"],
+    installed: false,
+  },
+  {
+    name: "Rust",
+    converters: ["rustc"],
+    installed: false,
+  },
+  {
+    name: "Go",
+    converters: ["go"],
+    installed: false,
+  },
+  {
+    name: "JavaScript",
+    converters: ["node", "deno"],
     installed: false,
   },
   {
