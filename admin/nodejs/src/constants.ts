@@ -1,5 +1,3 @@
 const ADMIN_PREFIX = "/admin";
 
-export {
-    ADMIN_PREFIX
-};
+export { ADMIN_PREFIX };
