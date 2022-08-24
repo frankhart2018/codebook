@@ -40,7 +40,7 @@ app.get("/languages/installed", (_req: Request, res: Response, _next: NextFuncti
 
         languagesInstalled.push({
             "name": language.name,
-            "converters": [],
+            "converters": language.converters,
             "installed": foundAnyConverter,
         });
     }
