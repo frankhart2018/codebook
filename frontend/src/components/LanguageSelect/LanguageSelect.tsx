@@ -33,7 +33,7 @@ const LanguageSelect = (props: LanguageSelectProps): JSX.Element => {
   const handleLanguageChange = (event: any) => {
     setLanguage(event.target.value);
     props.setCurrentLanguageCallback(
-      event.target.value != "C++" ? event.target.value.toLowerCase() : "cpp"
+      event.target.value !== "C++" ? event.target.value.toLowerCase() : "cpp"
     );
   };
 

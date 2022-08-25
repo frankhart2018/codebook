@@ -27,6 +27,8 @@ const getDefaultHelloWorld = (language: LanguageName): string => {
 };
 
 const App = (): JSX.Element => {
+  document.title = "CodeBook";
+
   let [currentLanguage, setCurrentLanguage] = useState<LanguageName>("c");
 
   return (
