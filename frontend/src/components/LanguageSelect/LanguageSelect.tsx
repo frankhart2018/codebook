@@ -3,6 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { LanguageName } from "@uiw/codemirror-extensions-langs";
 
 import { BASE_URL } from "../../constants";
 import "./LanguageSelect.css";
@@ -13,7 +14,11 @@ interface Language {
   installed: boolean;
 }
 
-const LanguageSelect = (): JSX.Element => {
+interface LanguageSelectProps {
+  setCurrentLanguageCallback: Function;
+}
+
+const LanguageSelect = (props: LanguageSelectProps): JSX.Element => {
   const [items, setItems] = useState<Language[]>([]);
   const [language, setLanguage] = useState<string>("");
 
@@ -27,6 +32,9 @@ const LanguageSelect = (): JSX.Element => {
 
   const handleLanguageChange = (event: any) => {
     setLanguage(event.target.value);
+    props.setCurrentLanguageCallback(
+      event.target.value != "C++" ? event.target.value.toLowerCase() : "cpp"
+    );
   };
 
   return (
