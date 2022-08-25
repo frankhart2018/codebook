@@ -3,7 +3,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { LanguageName } from "@uiw/codemirror-extensions-langs";
 
 import { BASE_URL } from "../../constants";
 import "./LanguageSelect.css";

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { LanguageName } from "@uiw/codemirror-extensions-langs";
+import Button from "@mui/material/Button";
 
 import "./App.css";
 import LanguageSelect from "./components/LanguageSelect/LanguageSelect";
@@ -39,6 +40,7 @@ const App = (): JSX.Element => {
         language={currentLanguage}
         value={getDefaultHelloWorld(currentLanguage)}
       />
+      <Button variant="contained" color="success">Run</Button>
     </div>
   );
 };
