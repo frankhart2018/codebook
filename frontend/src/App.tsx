@@ -47,20 +47,20 @@ const App = (): JSX.Element => {
   const setCurrentLanguageCallback = (language: string) => {
     setCurrentLanguage(language);
     setOutput("");
-  }
+  };
 
   const onClickHandler = () => {
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: code, language: currentLanguage })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: code, language: currentLanguage }),
     };
 
     fetch(`${BASE_URL}/program/run`, requestOptions)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setOutput(data.output);
-      })
+      });
   };
 
   return (
@@ -84,9 +84,7 @@ const App = (): JSX.Element => {
       ) : null}
 
       <Container maxWidth="sm">
-        <pre>
-          {output}
-        </pre>
+        <pre>{output}</pre>
       </Container>
     </div>
   );

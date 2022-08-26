@@ -42,9 +42,10 @@ const LANGUAGES: Language[] = [
   },
 ];
 
-const languageConvertors: {[key: string]: string[]} = {}
+const languageConvertors: { [key: string]: string[] } = {};
 for (const language of LANGUAGES) {
-  const langName = language.name !== 'C++' ? language.name.toLowerCase() : 'cpp';
+  const langName =
+    language.name !== "C++" ? language.name.toLowerCase() : "cpp";
   languageConvertors[langName] = language.convertors;
 }
 
