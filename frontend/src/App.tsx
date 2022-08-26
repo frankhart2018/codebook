@@ -38,7 +38,6 @@ const App = (): JSX.Element => {
 
   let [currentLanguage, setCurrentLanguage] = useState<string>("");
   let [code, setCode] = useState<string>(getDefaultHelloWorld(currentLanguage));
-  let [showOutput, setShowOutput] = useState<boolean>(false);
   let [output, setOutput] = useState<string>("");
 
   useEffect(() => {
@@ -80,7 +79,9 @@ const App = (): JSX.Element => {
       ) : null}
 
       <Container maxWidth="sm">
-        {output}
+        <pre>
+          {output}
+        </pre>
       </Container>
     </div>
   );
