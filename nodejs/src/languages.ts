@@ -22,7 +22,7 @@ const LANGUAGES: Language[] = [
   },
   {
     name: "Java",
-    convertors: ["javac"],
+    convertors: ["java"],
     installed: false,
   },
   {

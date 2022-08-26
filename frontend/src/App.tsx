@@ -44,6 +44,11 @@ const App = (): JSX.Element => {
     setCode(getDefaultHelloWorld(currentLanguage));
   }, [currentLanguage]);
 
+  const setCurrentLanguageCallback = (language: string) => {
+    setCurrentLanguage(language);
+    setOutput("");
+  }
+
   const onClickHandler = () => {
     const requestOptions = {
       method: 'POST',
@@ -63,7 +68,7 @@ const App = (): JSX.Element => {
       {currentLanguage === "" ? (
         <Alert severity="info">Select a language to get started:</Alert>
       ) : null}
-      <LanguageSelect setCurrentLanguageCallback={setCurrentLanguage} />
+      <LanguageSelect setCurrentLanguageCallback={setCurrentLanguageCallback} />
 
       {currentLanguage !== "" ? (
         <>
