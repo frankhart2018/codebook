@@ -3,11 +3,13 @@ import { Express, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import { Language, LANGUAGES } from "./languages";
+import { Language, LANGUAGES, languageConvertors } from "./languages";
 import commandExists from "./command_exists";
+import runProgram from "./run_program";
 
 const app: Express = express();
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get("/status", (_req: Request, res: Response, _next: NextFunction) => {
   res.send({
@@ -35,7 +37,7 @@ app.get(
 
     for (const language of LANGUAGES) {
       let foundAnyConverter: boolean = false;
-      for (const converter of language.converters) {
+      for (const converter of language.convertors) {
         if (commandExists(converter)) {
           foundAnyConverter = true;
         }
@@ -47,7 +49,7 @@ app.get(
 
       languagesInstalled.push({
         name: language.name,
-        converters: language.converters,
+        convertors: language.convertors,
         installed: foundAnyConverter,
       });
     }
@@ -58,5 +60,25 @@ app.get(
   }
 );
 
-app.use(bodyParser.urlencoded());
+app.post("/program/run", (req: Request, res: Response, _next: NextFunction) => {
+  const code: string = req.body.code;
+  const language: string = req.body.language;
+
+  const convertors: string[] = languageConvertors[language];
+  let installedConvertor: string = "";
+
+  for (const convertor of convertors) {
+    if (commandExists(convertor)) {
+      installedConvertor = convertor;
+      break;
+    }
+  }
+
+  const output = runProgram(language, installedConvertor, code);
+
+  return res.send({
+    output,
+  });
+});
+
 app.listen(8080);

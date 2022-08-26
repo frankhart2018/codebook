@@ -1,45 +1,51 @@
 interface Language {
   name: string;
-  converters: string[];
+  convertors: string[];
   installed: boolean;
 }
 
 const LANGUAGES: Language[] = [
   {
     name: "C",
-    converters: ["gcc", "clang"],
+    convertors: ["gcc", "clang"],
     installed: false,
   },
   {
     name: "C++",
-    converters: ["g++", "clang++"],
+    convertors: ["g++", "clang++"],
     installed: false,
   },
   {
     name: "Python",
-    converters: ["python3", "python"],
+    convertors: ["python3", "python"],
     installed: false,
   },
   {
     name: "Java",
-    converters: ["javac"],
+    convertors: ["javac"],
     installed: false,
   },
   {
     name: "Rust",
-    converters: ["rustc"],
+    convertors: ["rustc"],
     installed: false,
   },
   {
     name: "Go",
-    converters: ["go"],
+    convertors: ["go"],
     installed: false,
   },
   {
     name: "JavaScript",
-    converters: ["node", "deno"],
+    convertors: ["node", "deno"],
     installed: false,
   },
 ];
 
-export { Language, LANGUAGES };
+const languageConvertors: {[key: string]: string[]} = {}
+for (const language of LANGUAGES) {
+  const langName = language.name !== 'C++' ? language.name.toLowerCase() : 'cpp';
+  languageConvertors[langName] = language.convertors;
+}
+
+export { Language, LANGUAGES, languageConvertors };

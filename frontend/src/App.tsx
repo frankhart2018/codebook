@@ -49,7 +49,7 @@ const App = (): JSX.Element => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: code })
+      body: JSON.stringify({ code: code, language: currentLanguage })
     };
 
     fetch(`${BASE_URL}/program/run`, requestOptions)
