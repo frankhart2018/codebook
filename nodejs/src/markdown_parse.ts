@@ -73,9 +73,10 @@ const extractPrograms = (filePath: string): string => {
     const code = codeLines.join("\n");
 
     const currentLanguage = codeLanguages[i];
-    const codeFileName = path.join(dirPath, `${fileName}-${i + 1}.${
-      languageConvertors[currentLanguage].extension
-    }`);
+    const codeFileName = path.join(
+      dirPath,
+      `${fileName}-${i + 1}.${languageConvertors[currentLanguage].extension}`
+    );
 
     fs.writeFileSync(codeFileName, code);
 
@@ -92,9 +93,12 @@ const extractPrograms = (filePath: string): string => {
       currentEndLocation = startToEndLineMapping[i];
 
       const currentLanguage = codeLanguages[currentCodeIndex];
-      const codeFileName = path.join(dirPath, `${fileName}-${currentCodeIndex + 1}.${
-        languageConvertors[currentLanguage].extension
-      }`);
+      const codeFileName = path.join(
+        dirPath,
+        `${fileName}-${currentCodeIndex + 1}.${
+          languageConvertors[currentLanguage].extension
+        }`
+      );
       finalMarkdownLines.push(`~~>>>${codeFileName}<<<~~`);
       currentCodeIndex++;
 

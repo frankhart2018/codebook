@@ -83,13 +83,16 @@ app.post("/program/run", (req: Request, res: Response, _next: NextFunction) => {
   });
 });
 
-app.post("/text/parsemd", (req: Request, res: Response, _next: NextFunction) => {
-  const markdownPath = "./src/test.md";
-  const finalMarkdown = extractPrograms(markdownPath);
+app.post(
+  "/text/parsemd",
+  (req: Request, res: Response, _next: NextFunction) => {
+    const markdownPath = req.body.markdownPath;
+    const finalMarkdown = extractPrograms(markdownPath);
 
-  return res.send({
-    cleanedMarkdown: finalMarkdown,
-  });
-});
+    return res.send({
+      cleanedMarkdown: finalMarkdown,
+    });
+  }
+);
 
 app.listen(8080);
