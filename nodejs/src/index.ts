@@ -51,6 +51,7 @@ app.get(
         name: language.name,
         convertors: language.convertors,
         installed: foundAnyConverter,
+        extension: language.extension,
       });
     }
 
@@ -64,7 +65,7 @@ app.post("/program/run", (req: Request, res: Response, _next: NextFunction) => {
   const code: string = req.body.code;
   const language: string = req.body.language;
 
-  const convertors: string[] = languageConvertors[language];
+  const convertors: any = languageConvertors[language].extension;
   let installedConvertor: string = "";
 
   for (const convertor of convertors) {

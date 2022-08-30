@@ -1,3 +1,19 @@
 .App {
   text-align: center;
 }
+
+.left-grid {
+  border-right: 1px solid black;
+  height: 100vh;
+  margin-left: 10px;
+}
+
+.right-grid {
+  border-left: 1px solid black;
+  height: 100vh;
+}
+
+.justified-markdown {
+  text-align: justify;
+  justify-content: space-evenly;
+}
