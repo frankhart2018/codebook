@@ -6,6 +6,7 @@ import cors from "cors";
 import { Language, LANGUAGES, languageConvertors } from "./languages";
 import commandExists from "./command_exists";
 import runProgram from "./run_program";
+import extractPrograms from "./markdown_parse";
 
 const app: Express = express();
 app.use(cors());
@@ -79,6 +80,15 @@ app.post("/program/run", (req: Request, res: Response, _next: NextFunction) => {
 
   return res.send({
     output,
+  });
+});
+
+app.post("/text/parsemd", (req: Request, res: Response, _next: NextFunction) => {
+  const markdownPath = "./src/test.md";
+  const finalMarkdown = extractPrograms(markdownPath);
+
+  return res.send({
+    cleanedMarkdown: finalMarkdown,
   });
 });
 

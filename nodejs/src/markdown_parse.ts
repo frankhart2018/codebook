@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { languageConvertors } from "./languages";
+import * as path from "path";
 
 interface Meta {
   locations: number[][];
@@ -53,17 +54,16 @@ const getCodeBlockLocations = (fileContentLines: string[]): Meta => {
   };
 };
 
-const getFilename = (fullPath: string): string => {
-  return fullPath.replace(/^.*[\\\/]/, "");
-};
+const extractPrograms = (filePath: string): string => {
+  const dirPath = path.dirname(filePath);
+  const basePath = path.basename(filePath);
 
-const extractPrograms = (filePath: string) => {
   const fileContents: string = fs.readFileSync(filePath).toString();
   const fileContentLines: string[] = fileContents.split("\n");
   const codeMeta = getCodeBlockLocations(fileContentLines);
   const codeLocations = codeMeta.locations;
   const codeLanguages = codeMeta.languages;
-  const fileNameSplit = getFilename(filePath).split(".");
+  const fileNameSplit = basePath.split(".");
   const fileName = fileNameSplit.slice(0, fileNameSplit.length - 1).join(".");
 
   const startToEndLineMapping: { [key: number]: number } = {};
@@ -73,16 +73,16 @@ const extractPrograms = (filePath: string) => {
     const code = codeLines.join("\n");
 
     const currentLanguage = codeLanguages[i];
-    const codeFileName = `${fileName}-${i + 1}.${
+    const codeFileName = path.join(dirPath, `${fileName}-${i + 1}.${
       languageConvertors[currentLanguage].extension
-    }`;
+    }`);
 
     fs.writeFileSync(codeFileName, code);
 
     startToEndLineMapping[start] = end;
   });
 
-  const finalCodeLines: string[] = [];
+  const finalMarkdownLines: string[] = [];
   let skipLine = false;
   let currentEndLocation = -1;
   let currentCodeIndex = 0;
@@ -92,10 +92,10 @@ const extractPrograms = (filePath: string) => {
       currentEndLocation = startToEndLineMapping[i];
 
       const currentLanguage = codeLanguages[currentCodeIndex];
-      const codeFileName = `${fileName}-${currentCodeIndex + 1}.${
+      const codeFileName = path.join(dirPath, `${fileName}-${currentCodeIndex + 1}.${
         languageConvertors[currentLanguage].extension
-      }`;
-      finalCodeLines.push(`~~>>>${codeFileName}<<<~~`);
+      }`);
+      finalMarkdownLines.push(`~~>>>${codeFileName}<<<~~`);
       currentCodeIndex++;
 
       continue;
@@ -106,10 +106,11 @@ const extractPrograms = (filePath: string) => {
       continue;
     }
 
-    finalCodeLines.push(fileContentLines[i]);
+    finalMarkdownLines.push(fileContentLines[i]);
   }
-  const finalCode = finalCodeLines.join("\n");
-  fs.writeFileSync(`${fileName}-prepared.md`, finalCode);
+  const finalMarkdown = finalMarkdownLines.join("\n");
+
+  return finalMarkdown;
 };
 
-extractPrograms("test.md");
+export default extractPrograms;
