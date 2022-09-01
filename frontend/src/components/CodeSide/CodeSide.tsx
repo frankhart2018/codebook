@@ -32,15 +32,26 @@ const getDefaultHelloWorld = (language: string): string => {
   }
 };
 
-const CodeSide = (): JSX.Element => {
-  document.title = "CodeBook";
-
-  let [currentLanguage, setCurrentLanguage] = useState<string>("");
-  let [code, setCode] = useState<string>(getDefaultHelloWorld(currentLanguage));
+const CodeSide = ({
+  language = "",
+  isSingleLanguage = false,
+  givenCode = "",
+}): JSX.Element => {
+  let [currentLanguage, setCurrentLanguage] = useState<string>(language);
+  let [code, setCode] = useState<string>(
+    givenCode === "" ? getDefaultHelloWorld(currentLanguage) : givenCode
+  );
   let [output, setOutput] = useState<string>("");
 
   useEffect(() => {
-    setCode(getDefaultHelloWorld(currentLanguage));
+    setCurrentLanguage(language);
+    setCode(givenCode);
+  }, [language, givenCode]);
+
+  useEffect(() => {
+    setCode(
+      givenCode === "" ? getDefaultHelloWorld(currentLanguage) : givenCode
+    );
   }, [currentLanguage]);
 
   const setCurrentLanguageCallback = (language: string) => {
@@ -67,7 +78,11 @@ const CodeSide = (): JSX.Element => {
       {currentLanguage === "" ? (
         <Alert severity="info">Select a language to get started:</Alert>
       ) : null}
-      <LanguageSelect setCurrentLanguageCallback={setCurrentLanguageCallback} />
+      {!isSingleLanguage ? (
+        <LanguageSelect
+          setCurrentLanguageCallback={setCurrentLanguageCallback}
+        />
+      ) : null}
 
       {currentLanguage !== "" ? (
         <>
@@ -79,12 +94,12 @@ const CodeSide = (): JSX.Element => {
           <Button variant="contained" color="success" onClick={onClickHandler}>
             Run
           </Button>
+
+          <Container maxWidth="sm">
+            <pre>{output}</pre>
+          </Container>
         </>
       ) : null}
-
-      <Container maxWidth="sm">
-        <pre>{output}</pre>
-      </Container>
     </div>
   );
 };

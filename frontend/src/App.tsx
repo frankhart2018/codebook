@@ -11,6 +11,7 @@ const App = (): JSX.Element => {
   document.title = "CodeBook";
 
   let [input, setInput] = useState<string>("");
+  let [codeSide, setCodeSide] = useState<JSX.Element | null>(null);
 
   const requestOptions = {
     method: "POST",
@@ -32,6 +33,7 @@ const App = (): JSX.Element => {
             return (
               <LinkButton
                 codePath={line.replace("~~>>>", "").replace("<<<~~", "")}
+                setCodeSideHandler={setCodeSide}
               />
             );
           } else {
@@ -44,7 +46,7 @@ const App = (): JSX.Element => {
         })}
       </Grid>
       <Grid item xs={6} className="right-grid">
-        <CodeSide />
+        {codeSide}
       </Grid>
     </Grid>
   );

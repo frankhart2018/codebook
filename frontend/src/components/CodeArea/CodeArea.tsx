@@ -16,7 +16,7 @@ const CodeArea = (props: CodeAreaProps): JSX.Element => {
   return (
     <CodeMirror
       value={props.value}
-      height="200px"
+      height="60vh"
       theme={"dark"}
       className="code-editor"
       extensions={[loadLanguage(lang)!].filter(Boolean)}
