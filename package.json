@@ -17,7 +17,7 @@
         "url": "https://github.com/frankhart2018/codebook/issues"
     },
     "homepage": "https://github.com/frankhart2018/codebook#readme",
-    "devDependencies": {
+    "dependencies": {
         "concurrently": "^7.3.0"
     }
 }
