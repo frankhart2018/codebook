@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@codemirror/lang-lezer": "^6.0.0",
     "@codemirror/lang-python": "^6.0.1",
