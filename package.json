@@ -1,0 +1,23 @@
+{
+    "name": "codebook",
+    "version": "1.0.0",
+    "description": "Books with code",
+    "scripts": {
+        "client": "cd frontend && npm run start",
+        "server": "cd nodejs && npm run start",
+        "start": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/frankhart2018/codebook.git"
+    },
+    "author": "Siddhartha Dhar Choudhury",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/frankhart2018/codebook/issues"
+    },
+    "homepage": "https://github.com/frankhart2018/codebook#readme",
+    "devDependencies": {
+        "concurrently": "^7.3.0"
+    }
+}
