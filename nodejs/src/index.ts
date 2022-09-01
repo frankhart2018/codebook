@@ -84,13 +84,16 @@ app.post("/program/run", (req: Request, res: Response, _next: NextFunction) => {
   });
 });
 
-app.post("/program/fetch", (req: Request, res: Response, _next: NextFunction) => {
-  const codeFilePath: string = req.body.codeFilePath;
+app.post(
+  "/program/fetch",
+  (req: Request, res: Response, _next: NextFunction) => {
+    const codeFilePath: string = req.body.codeFilePath;
 
-  return res.send({
-    code: fs.readFileSync(codeFilePath).toString(),
-  });
-});
+    return res.send({
+      code: fs.readFileSync(codeFilePath).toString(),
+    });
+  }
+);
 
 app.post(
   "/text/parsemd",

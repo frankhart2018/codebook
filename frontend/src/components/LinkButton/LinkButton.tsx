@@ -26,22 +26,22 @@ const LinkButton = (props: LinkButtonProps): JSX.Element => {
 
   const onClickHandler = () => {
     const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ codeFilePath: codePath }),
-      };
-  
-      fetch(`${BASE_URL}/program/fetch`, requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-            props.setCodeSideHandler(
-                <CodeSide
-                  isSingleLanguage={true}
-                  language={extensionToLanguage[extension]}
-                  givenCode={data.code}
-                />
-            );
-        });
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ codeFilePath: codePath }),
+    };
+
+    fetch(`${BASE_URL}/program/fetch`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        props.setCodeSideHandler(
+          <CodeSide
+            isSingleLanguage={true}
+            language={extensionToLanguage[extension]}
+            givenCode={data.code}
+          />
+        );
+      });
   };
 
   return (

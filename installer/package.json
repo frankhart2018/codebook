@@ -1,12 +1,15 @@
 {
   "name": "codebook",
   "version": "1.0.0",
-  "description": "",
+  "description": "Books with code",
   "main": "index.js",
   "bin": {
     "codebook": "index.js"
   },
   "keywords": [],
   "author": "Siddhartha Dhar Choudhury",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "argparse": "^2.0.1"
+  }
 }
