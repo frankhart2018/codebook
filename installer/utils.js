@@ -36,7 +36,7 @@ const untarAndClean = () => {
 
 const getCodebook = async () => {
   process.chdir(constants.CODEBOOK_DIR);
-  downloadFile("http://localhost:8000/build.tar.gz", "./build.tar.gz", untarAndClean);
+  downloadFile(constants.CODEBOOK_URL, "./build.tar.gz", untarAndClean);
 
   return 0;
 }

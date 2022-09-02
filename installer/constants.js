@@ -8,7 +8,7 @@ const BOOK_DIR = path.join(CODEBOOK_DIR, "codebooks");
 const FRONTEND_DIR = path.join(CODE_DIR, "frontend-build");
 const BACKEND_DIR = path.join(CODE_DIR, "nodejs-build");
 
-const GIT_URL = "https://github.com/frankhart2018/codebook";
+const CODEBOOK_URL = "http://localhost:8080/build.tar.gz";
 
 const BLUE = "\x1b[34m";
 const RED = "\x1b[31m";
@@ -22,7 +22,7 @@ module.exports = {
   FRONTEND_DIR,
   BACKEND_DIR,
 
-  GIT_URL,
+  CODEBOOK_URL,
 
   BLUE,
   RED,
