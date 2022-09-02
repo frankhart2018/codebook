@@ -6,6 +6,7 @@
     "client": "cd frontend && npm run start",
     "clientprod": "cd frontend && serve -s build/",
     "server": "cd nodejs && npm run start",
+    "serverprod": "cd nodejs && node dist/index.js",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "startprod": "concurrently \"npm run server\" \"npm run clientprod\""
   },

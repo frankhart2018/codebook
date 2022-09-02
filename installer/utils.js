@@ -14,6 +14,16 @@ const makeDir = (args) => {
   return 0;
 };
 
+const removeDir = (dirPath) => {
+  if (fs.existsSync(dirPath)) {
+    child_process.execSync(`rm -rf ${dirPath}`);
+  }
+}
+
+const removeFile = (filePath) => {
+  child_process.execSync(`rm ${dirPath}`);
+}
+
 const gitClone = (args) => {
   process.chdir(args.dirPath);
 
@@ -23,6 +33,7 @@ const gitClone = (args) => {
   }
 
   child_process.execSync(`git clone ${args.url}`);
+
   return 0;
 };
 
@@ -38,14 +49,22 @@ const npmInstall = (args) => {
 };
 
 const startCodebook = () => {
+  if (!fs.existsSync(constants.CODE_DIR)) {
+    errorLog("Codebook not installed, run 'codebook --self-install' to install codebook!");
+    return;
+  }
+
   process.chdir(constants.CODEBOOK_CODE_DIR);
-  console.log("Running prod version");
   child_process.execSync("npm run startprod");
 };
 
 const infoLog = (message) => {
   console.log(`${constants.BLUE}${message}${constants.COLOR_END}`);
 };
+
+const errorLog = (message) => {
+  console.log(`Error: ${constants.RED}${message}${constants.COLOR_END}`);
+}
 
 module.exports = {
   makeDir,

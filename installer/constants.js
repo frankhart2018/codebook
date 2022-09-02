@@ -12,6 +12,7 @@ const BACKEND_DIR = path.join(CODEBOOK_CODE_DIR, "nodejs");
 const GIT_URL = "https://github.com/frankhart2018/codebook";
 
 const BLUE = "\x1b[34m";
+const RED = "\x1b[31m";
 const COLOR_END = "\x1b[0m";
 
 module.exports = {
@@ -26,5 +27,6 @@ module.exports = {
   GIT_URL,
 
   BLUE,
+  RED,
   COLOR_END,
 };
