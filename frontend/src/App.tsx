@@ -16,7 +16,7 @@ const App = (): JSX.Element => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ markdownPath: "./src/test.md" }),
+    body: JSON.stringify({ markdownPath: "./test.md" }),
   };
 
   fetch(`${BASE_URL}/text/parsemd`, requestOptions)

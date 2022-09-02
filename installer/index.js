@@ -16,35 +16,13 @@ const install = () => {
     {
       command: utils.makeDir,
       args: {
-        dirPath: constants.CODE_DIR,
-      },
-    },
-    {
-      command: utils.makeDir,
-      args: {
         dirPath: constants.BOOK_DIR,
       },
     },
     {
-      infolog: "Cloning codebase...",
-      command: utils.gitClone,
-      args: {
-        url: constants.GIT_URL,
-        dirPath: constants.CODE_DIR,
-      },
-    },
-    {
-      infolog: "Installing dependencies, this may take a while...",
-      command: utils.npmInstall,
-      args: {
-        dirPath: constants.BACKEND_DIR,
-      },
-    },
-    {
-      command: utils.npmInstall,
-      args: {
-        dirPath: constants.CODEBOOK_CODE_DIR,
-      },
+      infolog: "Building codebook application...",
+      command: utils.getCodebook,
+      args: {},
     },
   ];
 

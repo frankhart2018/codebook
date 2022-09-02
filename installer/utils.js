@@ -2,6 +2,7 @@ const child_process = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
+const http = require("http");
 
 const constants = require("./constants");
 
@@ -14,28 +15,31 @@ const makeDir = (args) => {
   return 0;
 };
 
-const removeDir = (dirPath) => {
-  if (fs.existsSync(dirPath)) {
-    child_process.execSync(`rm -rf ${dirPath}`);
-  }
+const downloadFile = ((url, path, postDownloadFn) => {
+  const file = fs.createWriteStream(path);
+  const request = http.get(url, function(response) {
+    response.pipe(file);
+    file.on("finish", () => {
+        file.close();
+        postDownloadFn();
+    });
+  });
+});
+
+const untarAndClean = () => {
+  child_process.execSync('tar -xvf build.tar.gz');
+  child_process.execSync('rm build.tar.gz');
+
+  npmInstall({dirPath: constants.BACKEND_DIR});
+  npmInstall({dirPath: constants.CODE_DIR});
 }
 
-const removeFile = (filePath) => {
-  child_process.execSync(`rm ${dirPath}`);
-}
-
-const gitClone = (args) => {
-  process.chdir(args.dirPath);
-
-  const repoName = path.basename(args.url).replace(".git", "");
-  if (fs.existsSync(repoName)) {
-    return 1;
-  }
-
-  child_process.execSync(`git clone ${args.url}`);
+const getCodebook = async () => {
+  process.chdir(constants.CODEBOOK_DIR);
+  downloadFile("http://localhost:8000/build.tar.gz", "./build.tar.gz", untarAndClean);
 
   return 0;
-};
+}
 
 const npmInstall = (args) => {
   process.chdir(args.dirPath);
@@ -54,7 +58,7 @@ const startCodebook = () => {
     return;
   }
 
-  process.chdir(constants.CODEBOOK_CODE_DIR);
+  process.chdir(constants.CODE_DIR);
   child_process.execSync("npm run startprod");
 };
 
@@ -68,7 +72,7 @@ const errorLog = (message) => {
 
 module.exports = {
   makeDir,
-  gitClone,
+  getCodebook,
   npmInstall,
   startCodebook,
   infoLog,

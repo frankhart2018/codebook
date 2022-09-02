@@ -3,11 +3,10 @@ const path = require("path");
 
 const HOME_DIR = os.homedir();
 const CODEBOOK_DIR = path.join(HOME_DIR, ".codebook");
-const CODE_DIR = path.join(CODEBOOK_DIR, "code");
+const CODE_DIR = path.join(CODEBOOK_DIR, "build");
 const BOOK_DIR = path.join(CODEBOOK_DIR, "codebooks");
-const CODEBOOK_CODE_DIR = path.join(CODE_DIR, "codebook");
-const FRONTEND_DIR = path.join(CODEBOOK_CODE_DIR, "frontend");
-const BACKEND_DIR = path.join(CODEBOOK_CODE_DIR, "nodejs");
+const FRONTEND_DIR = path.join(CODE_DIR, "frontend-build");
+const BACKEND_DIR = path.join(CODE_DIR, "nodejs-build");
 
 const GIT_URL = "https://github.com/frankhart2018/codebook";
 
@@ -20,7 +19,6 @@ module.exports = {
   CODEBOOK_DIR,
   CODE_DIR,
   BOOK_DIR,
-  CODEBOOK_CODE_DIR,
   FRONTEND_DIR,
   BACKEND_DIR,
 
