@@ -37,7 +37,10 @@ const untarAndClean = () => {
 const getCodebook = async () => {
   process.chdir(constants.CODEBOOK_DIR);
   downloadFile(constants.CODEBOOK_URL, "./build.tar.gz", untarAndClean);
-  child_process.execSync('sudo npm i -g serve');
+
+  const serveInstall = "npm i -g serve";
+  const serveInstallCmd = (process.platform == "darwin") ? `sudo ${serveInstall}` : serveInstall;
+  child_process.execSync(serveInstallCmd);
 
   return 0;
 }
