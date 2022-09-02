@@ -8,7 +8,7 @@ const BOOK_DIR = path.join(CODEBOOK_DIR, "codebooks");
 const FRONTEND_DIR = path.join(CODE_DIR, "frontend-build");
 const BACKEND_DIR = path.join(CODE_DIR, "nodejs-build");
 
-const CODEBOOK_URL = "http://localhost:8080/build.tar.gz";
+const CODEBOOK_URL = "http://10.0.0.239:8000/build.tar.gz";
 
 const BLUE = "\x1b[34m";
 const RED = "\x1b[31m";
