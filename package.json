@@ -4,8 +4,10 @@
   "description": "Books with code",
   "scripts": {
     "client": "cd frontend && npm run start",
+    "clientprod": "cd frontend && serve -s build/",
     "server": "cd nodejs && npm run start",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "startprod": "concurrently \"npm run server\" \"npm run clientprod\""
   },
   "repository": {
     "type": "git",
