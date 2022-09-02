@@ -39,7 +39,8 @@ const npmInstall = (args) => {
 
 const startCodebook = () => {
   process.chdir(constants.CODEBOOK_CODE_DIR);
-  child_process.execSync("npm start");
+  console.log("Running prod version");
+  child_process.execSync("npm run startprod");
 };
 
 const infoLog = (message) => {

@@ -37,12 +37,6 @@ const install = () => {
       infolog: "Installing dependencies, this may take a while...",
       command: utils.npmInstall,
       args: {
-        dirPath: constants.FRONTEND_DIR,
-      },
-    },
-    {
-      command: utils.npmInstall,
-      args: {
         dirPath: constants.BACKEND_DIR,
       },
     },
